@@ -1,15 +1,10 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text } from "@chakra-ui/react";
+import DashboardSection from "~/components/dashboard/dashboardSection.component";
 
 export default function DashboardContainer() {
   return (
-    <Flex
-      justifyContent="center"
-      alignItems="center"
-      height="calc(100vh - 50px)"
-    >
-      <Text>
-        Hello World, <br /> <b>Do your magic here,</b>{' '}
-      </Text>
+    <Flex height="calc(100vh - 50px)">
+      <DashboardSection />
     </Flex>
   );
 }
