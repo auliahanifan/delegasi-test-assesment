@@ -6,22 +6,34 @@ export const CONSTANTA = {
     MAIN: "https://my-json-server.typicode.com/Delegasi-Tech/data-dummy",
   },
   CREDIT: {
-    "depresiasi & amortisasi": true,
-    "akun hutang": true,
-    "kewajiban lancar lainnya": true,
-    "kewajiban jangka panjang": true,
+    BALANCE_SHEET: {
+      "depresiasi & amortisasi": true,
+      "akun hutang": true,
+      "kewajiban lancar lainnya": true,
+      "kewajiban jangka panjang": true,
+    },
+    INCOME_STATEMENT: {},
   },
 };
+export function mapBalanceSheetData(data: DelegasiResponseDto): TableDto {
+  return mapData(data, CONSTANTA.CREDIT.BALANCE_SHEET);
+}
+export function mapIncomeStatementData(data: DelegasiResponseDto): TableDto {
+  return mapData(data, CONSTANTA.CREDIT.INCOME_STATEMENT);
+}
 
-export function mapData(data: DelegasiResponseDto): TableDto {
+export function mapData(
+  data: DelegasiResponseDto,
+  creditObject: object
+): TableDto {
   const mapped: TableDto = {
     label: data.label,
-    isCredit: data.label.toLowerCase() in CONSTANTA.CREDIT ? false : true,
+    isCredit: data.label.toLowerCase() in creditObject ? false : true,
     value: data.value,
     details:
       data.children !== undefined
-        ? data.children.map(mapData)
-        : data.details?.map(mapData),
+        ? data.children.map((data) => mapData(data, creditObject))
+        : data.details?.map((data) => mapData(data, creditObject)),
     month: data.month,
   };
   return mapped;
