@@ -85,8 +85,10 @@ const BalanceSheetTableComponent: FC<{ children?: ReactNode }> = (props) => {
                     })}
                     <Tfoot>
                       <Tr>
-                        <Th>Total {tbl.label}</Th>
-                        <Th isNumeric>{convertNumber(tbl.value)}</Th>
+                        <Th padding="5px 0px">Total {tbl.label}</Th>
+                        <Th padding="5px 0px" isNumeric>
+                          {convertNumber(tbl.value)}
+                        </Th>
                       </Tr>
                     </Tfoot>
                   </Table>
