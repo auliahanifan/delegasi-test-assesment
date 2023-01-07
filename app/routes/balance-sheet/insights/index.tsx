@@ -1,5 +1,5 @@
 import { useLoaderData } from "@remix-run/react";
-import BalanceSheetInsightsComponent from "~/components/balanceSheet/insights..component";
+import BalanceSheetInsightsComponent from "~/components/balanceSheet/insights.component";
 import { getBalanceSheetInsights } from "~/services/balanceService.server";
 
 export async function loader() {
