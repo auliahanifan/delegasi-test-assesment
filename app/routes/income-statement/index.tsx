@@ -1,11 +1,15 @@
 import { useLoaderData } from "@remix-run/react";
 import IncomeStatementMainComponent from "~/components/incomeStatement/main.component";
 import MainLayout from "~/layouts/main.layout";
-import { getIncomeStatementData } from "~/services/incomeStatement.server";
+import {
+  getIncomeStatementData,
+  getIncomeStatementInsights,
+} from "~/services/incomeStatement.server";
 
 export async function loader() {
-  const data = await getIncomeStatementData();
-  return data;
+  const table = await getIncomeStatementData();
+  const insight = await getIncomeStatementInsights();
+  return { table, insight };
 }
 
 export default function IncomeStatementPage() {
@@ -14,7 +18,7 @@ export default function IncomeStatementPage() {
 
   return (
     <MainLayout>
-      <IncomeStatementMainComponent data={data} />
+      <IncomeStatementMainComponent table={data.table} insight={data.insight} />
     </MainLayout>
   );
 }

@@ -1,11 +1,15 @@
 import { useLoaderData } from "@remix-run/react";
 import BalanceSheetMainComponent from "~/components/balanceSheet/main.component";
 import MainLayout from "~/layouts/main.layout";
-import { getBalanceSheetData } from "~/services/balanceService.server";
+import {
+  getBalanceSheetData,
+  getBalanceSheetInsights,
+} from "~/services/balanceService.server";
 
 export async function loader() {
-  const data = await getBalanceSheetData();
-  return data;
+  const table = await getBalanceSheetData();
+  const insight = await getBalanceSheetInsights();
+  return { table, insight };
 }
 
 export default function IncomeStatementPage() {
@@ -14,7 +18,7 @@ export default function IncomeStatementPage() {
 
   return (
     <MainLayout>
-      <BalanceSheetMainComponent data={data} />
+      <BalanceSheetMainComponent table={data.table} insight={data.insight} />
     </MainLayout>
   );
 }

@@ -8,10 +8,14 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { FC, ReactNode, useState } from "react";
+import { InsightDto } from "~/dtos/insight.dto";
+import { TableDto } from "~/dtos/table.dto";
+import IncomeStatementInsightsComponent from "./insights.component";
 import IncomeStatementTableComponent from "./table.component";
 
 const IncomeStatementMainComponent: FC<{ children?: ReactNode }> = (props) => {
-  const [data, setData] = useState<TableDto>(props.data);
+  const [table, setTable] = useState<TableDto>(props.table);
+  const [insight, setInsight] = useState<InsightDto[]>(props.insight);
 
   return (
     <Box width="100%" margin="5px 0px 40px 0px">
@@ -28,10 +32,10 @@ const IncomeStatementMainComponent: FC<{ children?: ReactNode }> = (props) => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <IncomeStatementTableComponent data={data} />
+            <IncomeStatementTableComponent data={table} />
           </TabPanel>
           <TabPanel>
-            <p>Insights</p>
+            <IncomeStatementInsightsComponent data={insight} />
           </TabPanel>
         </TabPanels>
       </Tabs>

@@ -6,12 +6,21 @@ import {
   Tab,
   TabPanel,
   Box,
+  Text,
+  Center,
+  Divider,
+  Badge,
 } from "@chakra-ui/react";
 import { FC, ReactNode, useState } from "react";
+import { InsightDto } from "~/dtos/insight.dto";
+import { TableDto } from "~/dtos/table.dto";
+import InsightCardComponent from "../common/insightCard.component";
+import BalanceSheetInsightsComponent from "./insights..component";
 import BalanceSheetTableComponent from "./table.component";
 
 const BalanceSheetMainComponent: FC<{ children?: ReactNode }> = (props) => {
-  const [data, setData] = useState(props.data);
+  const [table, setTable] = useState<TableDto>(props.table);
+  const [insight, setInsight] = useState<InsightDto[]>(props.insight);
 
   return (
     <Box width="100%" margin="5px 0px 40px 0px">
@@ -28,10 +37,10 @@ const BalanceSheetMainComponent: FC<{ children?: ReactNode }> = (props) => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <BalanceSheetTableComponent data={data} />
+            <BalanceSheetTableComponent data={table} />
           </TabPanel>
           <TabPanel>
-            <p>Insights</p>
+            <BalanceSheetInsightsComponent data={insight} />
           </TabPanel>
         </TabPanels>
       </Tabs>
