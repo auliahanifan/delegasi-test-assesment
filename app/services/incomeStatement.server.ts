@@ -2,14 +2,19 @@ import axios from "axios";
 import { DelegasiResponseDto } from "~/dtos/delegasiResponse.dto";
 import { InsightDto } from "~/dtos/insight.dto";
 import { TableDto } from "~/dtos/table.dto";
+import { LAPORAN_LABA_RUGI_JSON } from "./dummy.server";
 import { CONSTANTA, mapIncomeStatementData } from "./helper.server";
 
 const INCOME_STATEMENT_URL = `${CONSTANTA.URL.MAIN}/laporan_laba_rugi`;
 
 export async function getIncomeStatementData(): Promise<TableDto> {
-  const response = await axios.get<DelegasiResponseDto>(INCOME_STATEMENT_URL);
-
-  return mapIncomeStatementData(response.data);
+  return axios
+    .get<DelegasiResponseDto>(INCOME_STATEMENT_URL)
+    .then((res) => mapIncomeStatementData(res.data))
+    .catch((err) => {
+      console.error(err);
+      return mapIncomeStatementData(LAPORAN_LABA_RUGI_JSON);
+    });
 }
 
 export async function getIncomeStatementInsights(): Promise<InsightDto[]> {

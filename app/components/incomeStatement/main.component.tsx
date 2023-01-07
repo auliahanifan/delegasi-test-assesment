@@ -6,16 +6,20 @@ import {
   TabPanel,
   Box,
   Heading,
+  Center,
+  CircularProgress,
 } from "@chakra-ui/react";
+import { useNavigate } from "@remix-run/react";
 import { FC, ReactNode, useState } from "react";
 import { InsightDto } from "~/dtos/insight.dto";
 import { TableDto } from "~/dtos/table.dto";
-import IncomeStatementInsightsComponent from "./insights.component";
 import IncomeStatementTableComponent from "./table.component";
 
 const IncomeStatementMainComponent: FC<{ children?: ReactNode }> = (props) => {
   const [table, setTable] = useState<TableDto>(props.table);
   const [insight, setInsight] = useState<InsightDto[]>(props.insight);
+  const [indexTab, setIndexTab] = useState<number>(props?.indexTab);
+  let navigate = useNavigate();
 
   return (
     <Box width="100%" margin="5px 0px 40px 0px">
@@ -25,18 +29,34 @@ const IncomeStatementMainComponent: FC<{ children?: ReactNode }> = (props) => {
         </Heading>
       </Box>
 
-      <Tabs size="md" variant="enclosed">
+      <Tabs
+        size="md"
+        variant="enclosed"
+        index={indexTab}
+        onChange={(index: number) => {
+          setIndexTab(index);
+          if (index == 0) {
+            navigate("/income-statement");
+          } else {
+            navigate("/income-statement/insights");
+          }
+        }}
+      >
         <TabList>
           <Tab>Tabel</Tab>
           <Tab>Insights</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
-            <IncomeStatementTableComponent data={table} />
+            {table !== undefined ? (
+              <IncomeStatementTableComponent data={table} />
+            ) : (
+              <Center>
+                <CircularProgress isIndeterminate color="green.300" />
+              </Center>
+            )}{" "}
           </TabPanel>
-          <TabPanel>
-            <IncomeStatementInsightsComponent data={insight} />
-          </TabPanel>
+          <TabPanel>{props.children}</TabPanel>
         </TabPanels>
       </Tabs>
     </Box>

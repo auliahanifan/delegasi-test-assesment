@@ -19,81 +19,85 @@ const IncomeStatementTableComponent: FC<{ children?: ReactNode }> = (props) => {
 
   return (
     <Box width="100%">
-      <TableContainer>
-        <Table
-          variant="simple"
-          margin="10px 0px"
-          width="100%"
-          style={{ tableLayout: "fixed" }}
-        >
-          <Thead>
-            <Tr>
-              <Th>{data.label}</Th>
-              <Th isNumeric>{data?.month}</Th>
-            </Tr>
-          </Thead>
-          {data.details?.map((firstLevelRow) => {
-            return (
-              <Tbody>
-                {
-                  <Tr style={{ padding: "2px" }}>
-                    <Td
-                      style={{
-                        padding: "1px",
-                        fontWeight: "bold",
-                        color: "#868B8E",
-                        width: "100px",
-                        maxWidth: "150px",
-                        wordWrap: "break-word",
-                        whiteSpace: "pre-wrap",
-                      }}
-                    >{`${firstLevelRow.label}`}</Td>
-                    <Td
-                      style={{
-                        padding: "1px",
-                        fontWeight: "bold",
-                        color: "#868B8E",
-                        width: "100px",
-                        maxWidth: "150px",
-                        wordWrap: "break-word",
-                      }}
-                      isNumeric
-                    >
-                      {convertNumber(
-                        firstLevelRow.value,
-                        firstLevelRow.isCredit
-                      )}
-                    </Td>
-                  </Tr>
-                }
-                {firstLevelRow.details?.map((secondLevelRow) => {
-                  return (
-                    <Tr
-                      style={{
-                        padding: "2px",
-                        color: "#868B8E",
-                      }}
-                    >
+      {data == null ? (
+        <Text> Can't fetch data </Text>
+      ) : (
+        <TableContainer>
+          <Table
+            variant="simple"
+            margin="10px 0px"
+            width="100%"
+            style={{ tableLayout: "fixed" }}
+          >
+            <Thead>
+              <Tr>
+                <Th>{data.label}</Th>
+                <Th isNumeric>{data?.month}</Th>
+              </Tr>
+            </Thead>
+            {data.details?.map((firstLevelRow) => {
+              return (
+                <Tbody>
+                  {
+                    <Tr style={{ padding: "2px" }}>
                       <Td
-                        style={{ padding: "1px", wordBreak: "break-word" }}
-                      >{`${secondLevelRow.label}`}</Td>
+                        style={{
+                          padding: "1px",
+                          fontWeight: "bold",
+                          color: "#868B8E",
+                          width: "100px",
+                          maxWidth: "150px",
+                          wordWrap: "break-word",
+                          whiteSpace: "pre-wrap",
+                        }}
+                      >{`${firstLevelRow.label}`}</Td>
                       <Td
-                        style={{ padding: "1px", color: "#868B8E" }}
+                        style={{
+                          padding: "1px",
+                          fontWeight: "bold",
+                          color: "#868B8E",
+                          width: "100px",
+                          maxWidth: "150px",
+                          wordWrap: "break-word",
+                        }}
                         isNumeric
                       >
                         {convertNumber(
-                          secondLevelRow.value,
-                          secondLevelRow.isCredit
+                          firstLevelRow.value,
+                          firstLevelRow.isCredit
                         )}
                       </Td>
                     </Tr>
-                  );
-                })}
-              </Tbody>
-            );
-          })}
-        </Table>
-      </TableContainer>
+                  }
+                  {firstLevelRow.details?.map((secondLevelRow) => {
+                    return (
+                      <Tr
+                        style={{
+                          padding: "2px",
+                          color: "#868B8E",
+                        }}
+                      >
+                        <Td
+                          style={{ padding: "1px", wordBreak: "break-word" }}
+                        >{`${secondLevelRow.label}`}</Td>
+                        <Td
+                          style={{ padding: "1px", color: "#868B8E" }}
+                          isNumeric
+                        >
+                          {convertNumber(
+                            secondLevelRow.value,
+                            secondLevelRow.isCredit
+                          )}
+                        </Td>
+                      </Tr>
+                    );
+                  })}
+                </Tbody>
+              );
+            })}
+          </Table>
+        </TableContainer>
+      )}
     </Box>
   );
 };
