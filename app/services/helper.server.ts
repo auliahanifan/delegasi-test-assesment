@@ -12,7 +12,16 @@ export const CONSTANTA = {
       "kewajiban lancar lainnya": true,
       "kewajiban jangka panjang": true,
     },
-    INCOME_STATEMENT: {},
+    INCOME_STATEMENT: {
+      "diskon penjualan": true,
+      refund: true,
+      "harga pokok penjualan": true,
+      beban: true,
+      "biaya sewa": true,
+      listrik: true,
+      "beban lainnya": true,
+      "beban pajak": true,
+    },
   },
 };
 export function mapBalanceSheetData(data: DelegasiResponseDto): TableDto {

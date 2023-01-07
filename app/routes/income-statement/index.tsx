@@ -14,7 +14,7 @@ export default function IncomeStatementPage() {
 
   return (
     <MainLayout>
-      <IncomeStatementMainComponent />
+      <IncomeStatementMainComponent data={data} />
     </MainLayout>
   );
 }
