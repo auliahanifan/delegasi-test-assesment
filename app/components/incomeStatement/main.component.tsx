@@ -10,14 +10,19 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { useNavigate } from "@remix-run/react";
-import { FC, ReactNode, useState } from "react";
-import { InsightDto } from "~/dtos/insight.dto";
-import { TableDto } from "~/dtos/table.dto";
+import type { FC, ReactNode } from "react";
+import { useState } from "react";
+import type { InsightDto } from "~/dtos/insight.dto";
+import type { TableDto } from "~/dtos/table.dto";
 import IncomeStatementTableComponent from "./table.component";
 
-const IncomeStatementMainComponent: FC<{ children?: ReactNode }> = (props) => {
-  const [table, setTable] = useState<TableDto>(props.table);
-  const [insight, setInsight] = useState<InsightDto[]>(props.insight);
+type IncomeStatementMainComponentProps = {
+table: TableDto,
+indexTab: number,
+children?: ReactNode
+}
+const IncomeStatementMainComponent: FC<IncomeStatementMainComponentProps> = (props) => {
+  const [table, _] = useState<TableDto>(props.table);
   const [indexTab, setIndexTab] = useState<number>(props?.indexTab);
   let navigate = useNavigate();
 

@@ -1,7 +1,7 @@
 import axios from "axios";
-import { DelegasiResponseDto } from "~/dtos/delegasiResponse.dto";
-import { InsightDto } from "~/dtos/insight.dto";
-import { TableDto } from "~/dtos/table.dto";
+import type { DelegasiResponseDto } from "~/dtos/delegasiResponse.dto";
+import type { InsightDto } from "~/dtos/insight.dto";
+import type { TableDto } from "~/dtos/table.dto";
 import { LAPORAN_NERACA_JSON } from "./dummy.server";
 import { CONSTANTA, mapBalanceSheetData } from "./helper.server";
 

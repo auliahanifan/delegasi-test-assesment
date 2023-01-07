@@ -10,11 +10,12 @@ import {
   Tfoot,
   Heading,
 } from "@chakra-ui/react";
-import { FC, ReactNode, useState } from "react";
-import { TableDto } from "~/dtos/table.dto";
+import type { FC } from "react";
+import { useState } from "react";
+import type { TableDto } from "~/dtos/table.dto";
 import { convertNumber } from "~/utils";
 
-const BalanceSheetTableComponent: FC<{ children?: ReactNode }> = (props) => {
+const BalanceSheetTableComponent: FC<{ data: TableDto }> = (props) => {
   const [data, setData] = useState<TableDto>(props.data);
 
   return (
@@ -87,7 +88,7 @@ const BalanceSheetTableComponent: FC<{ children?: ReactNode }> = (props) => {
                       <Tr>
                         <Th padding="5px 0px">Total {tbl.label}</Th>
                         <Th padding="5px 0px" isNumeric>
-                          {convertNumber(tbl.value)}
+                          {convertNumber(tbl.value, tbl.isCredit)}
                         </Th>
                       </Tr>
                     </Tfoot>

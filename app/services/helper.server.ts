@@ -1,5 +1,5 @@
-import { DelegasiResponseDto } from "~/dtos/delegasiResponse.dto";
-import { TableDto } from "~/dtos/table.dto";
+import type { DelegasiResponseDto } from "~/dtos/delegasiResponse.dto";
+import type { TableDto } from "~/dtos/table.dto";
 
 export const CONSTANTA = {
   URL: {

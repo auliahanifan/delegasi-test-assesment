@@ -1,8 +1,9 @@
 import { Box, Heading, Center, Badge, Divider, Text } from "@chakra-ui/react";
-import { FC, ReactNode, useState } from "react";
-import { InsightDto } from "~/dtos/insight.dto";
+import type { FC, ReactNode } from "react";
+import { useState } from "react";
+import type { InsightDto } from "~/dtos/insight.dto";
 
-const InsightCardComponent: FC<{ children?: ReactNode }> = (props) => {
+const InsightCardComponent: FC<{ data: InsightDto }> = (props) => {
   const [data, setData] = useState<InsightDto>(props.data);
 
   return (

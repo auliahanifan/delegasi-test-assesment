@@ -12,7 +12,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import { FC, ReactNode } from "react";
+import type { FC, ReactNode } from "react";
 
 const MainLayout: FC<{ children?: ReactNode }> = ({ children }) => {
   const { isOpen, onToggle } = useDisclosure();

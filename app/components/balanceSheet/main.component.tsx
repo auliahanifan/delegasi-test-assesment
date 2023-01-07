@@ -10,14 +10,19 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { useNavigate } from "@remix-run/react";
-import { FC, ReactNode, useState } from "react";
-import { InsightDto } from "~/dtos/insight.dto";
-import { TableDto } from "~/dtos/table.dto";
+import type { FC, ReactNode } from "react";
+import { useState } from "react";
+import type { TableDto } from "~/dtos/table.dto";
 import BalanceSheetTableComponent from "./table.component";
 
-const BalanceSheetMainComponent: FC<{ children?: ReactNode }> = (props) => {
-  const [table, setTable] = useState<TableDto>(props?.table);
-  const [insight, setInsight] = useState<InsightDto[]>(props?.insight);
+type BalanceSheetMainComponentProps = {
+  children?: ReactNode, 
+  table? : TableDto,
+  indexTab: number,
+}
+
+const BalanceSheetMainComponent: FC<BalanceSheetMainComponentProps> = (props) => {
+  const [table, setTable] = useState<TableDto|undefined>(props?.table);
   const [indexTab, setIndexTab] = useState<number>(props?.indexTab);
   let navigate = useNavigate();
 

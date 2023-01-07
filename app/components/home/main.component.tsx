@@ -1,7 +1,7 @@
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { Box, Button, Center, Heading } from "@chakra-ui/react";
 import { useNavigate } from "@remix-run/react";
-import { FC, ReactNode } from "react";
+import type { FC, ReactNode } from "react";
 
 const HomeMainComponent: FC<{ children?: ReactNode }> = () => {
   let navigate = useNavigate();

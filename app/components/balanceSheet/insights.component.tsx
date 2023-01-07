@@ -1,26 +1,34 @@
 import { Box, Center, Spinner, Text } from "@chakra-ui/react";
-import { FC, ReactNode, useState } from "react";
-import { InsightDto } from "~/dtos/insight.dto";
+import type { FC } from "react";
+import { useState } from "react";
+import type { InsightDto } from "~/dtos/insight.dto";
 import InsightCardComponent from "../common/insightCard/main.component";
 
-const BalanceSheetInsightsComponent: FC<{ children?: ReactNode }> = (props) => {
-  const [data, setData] = useState<InsightDto[]>(props.data);
+const BalanceSheetInsightsComponent: FC<{ data?: InsightDto[] }> = (props) => {
+  const [data, setData] = useState<InsightDto[] | undefined | null>(
+    props?.data
+  );
 
-  return (
-    <Box>
-      {data !== undefined ? (
-        <Box width="100%">
-          {data.map((insight) => (
-            <InsightCardComponent data={insight} />
-          ))}
-        </Box>
-      ) : data == null ? (
-        <Text> Can't fetch data </Text>
-      ) : (
+  if (data == undefined) {
+    return (
+      <Box>
         <Center>
           <Spinner size="xl" />
         </Center>
-      )}
+      </Box>
+    );
+  } else if (data == null) {
+    return (
+      <Box>
+        <Text> Can't fetch data </Text>
+      </Box>
+    );
+  }
+  return (
+    <Box width="100%">
+      {data.map((insight) => (
+        <InsightCardComponent data={insight} />
+      ))}
     </Box>
   );
 };

@@ -7,15 +7,15 @@ import {
   Th,
   Tbody,
   Td,
-  Tfoot,
-  Heading,
+  Text,
 } from "@chakra-ui/react";
-import { FC, ReactNode, useState } from "react";
-import { TableDto } from "~/dtos/table.dto";
+import type { FC } from "react";
+import { useState } from "react";
+import type { TableDto } from "~/dtos/table.dto";
 import { convertNumber } from "~/utils";
 
-const IncomeStatementTableComponent: FC<{ children?: ReactNode }> = (props) => {
-  const [data, setData] = useState<TableDto>(props.data);
+const IncomeStatementTableComponent: FC<{ data: TableDto }> = (props) => {
+  const [data, _] = useState<TableDto>(props.data);
 
   return (
     <Box width="100%">
