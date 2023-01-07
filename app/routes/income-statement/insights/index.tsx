@@ -10,5 +10,5 @@ export async function loader() {
 export default function IncomeStatementInsightOutletPage() {
   const data = useLoaderData<typeof loader>();
 
-  return <IncomeStatementInsightsComponent data={null} />;
+  return <IncomeStatementInsightsComponent data={data.insight} />;
 }
