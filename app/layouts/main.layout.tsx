@@ -28,9 +28,8 @@ const MainLayout: FC<{ children?: ReactNode }> = ({ children }) => {
       <Box
         minWidth="375px"
         width={{ base: "100%", md: "380px" }}
-        height="100vh"
+        minH="100vh"
         borderColor="gray.200"
-        minHeight="200px"
         position="relative"
         bg="white"
       >

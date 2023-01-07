@@ -1,7 +1,7 @@
 export type TableDto = {
   label: string;
-  value: BigInteger;
-  month: string;
+  value?: number;
+  month?: string;
   details?: Array<TableDto>;
-  children?: Array<TableDto>;
+  isCredit?: boolean;
 };

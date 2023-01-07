@@ -7,11 +7,14 @@ import {
   TabPanel,
   Box,
 } from "@chakra-ui/react";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useState } from "react";
+import BalanceSheetTableComponent from "./table.component";
 
-const BalanceSheetMainComponent: FC<{ children?: ReactNode }> = () => {
+const BalanceSheetMainComponent: FC<{ children?: ReactNode }> = (props) => {
+  const [data, setData] = useState(props.data);
+
   return (
-    <Box width="100%">
+    <Box width="100%" margin="5px 0px 40px 0px">
       <Box justifyContent="center">
         <Heading as="h4" size="md" textAlign="center" margin="10px 0px">
           Laporan Neraca
@@ -25,7 +28,7 @@ const BalanceSheetMainComponent: FC<{ children?: ReactNode }> = () => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <p>Tabel</p>
+            <BalanceSheetTableComponent data={data} />
           </TabPanel>
           <TabPanel>
             <p>Insights</p>

@@ -14,7 +14,7 @@ export default function IncomeStatementPage() {
 
   return (
     <MainLayout>
-      <BalanceSheetMainComponent />
+      <BalanceSheetMainComponent data={data} />
     </MainLayout>
   );
 }
