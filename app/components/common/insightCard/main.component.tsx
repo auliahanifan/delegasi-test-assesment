@@ -7,7 +7,7 @@ const InsightCardComponent: FC<{ children?: ReactNode }> = (props) => {
 
   return (
     <Center>
-      <Box border="1px" width="95%" padding="10px">
+      <Box border="1px" width="95%" padding="10px" margin="2px 0px">
         {data.status == "ok" ? (
           <Badge colorScheme="green">AMAN</Badge>
         ) : data.status == "warning" ? (
