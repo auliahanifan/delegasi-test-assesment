@@ -7,7 +7,7 @@ export async function loader() {
   return { insight };
 }
 
-export default function IncomeStatementInsightPage() {
+export default function BalanceSheetInsightOutletPage() {
   const data = useLoaderData<typeof loader>();
 
   return <BalanceSheetInsightsComponent data={data.insight} />;
