@@ -8,17 +8,15 @@ import {
 
 export async function loader() {
   const table = await getIncomeStatementData();
-  const insight = await getIncomeStatementInsights();
-  return { table, insight };
+  return { table };
 }
 
 export default function IncomeStatementPage() {
   const data = useLoaderData<typeof loader>();
-  console.log(data);
 
   return (
     <MainLayout>
-      <IncomeStatementMainComponent table={data.table} insight={data.insight} />
+      <IncomeStatementMainComponent table={data.table} indexTab={0} />
     </MainLayout>
   );
 }

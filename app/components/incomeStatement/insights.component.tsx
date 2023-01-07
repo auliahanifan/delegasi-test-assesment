@@ -8,7 +8,6 @@ const IncomeStatementInsightsComponent: FC<{ data: InsightDto[] }> = (
   props
 ) => {
   const [data, setData] = useState<InsightDto[]>(props.data);
-  console.log(data, "asuaus");
 
   return (
     <Box>
