@@ -7,7 +7,7 @@ import {
   Box,
   Heading,
   Center,
-  CircularProgress,
+  Spinner,
 } from "@chakra-ui/react";
 import { useNavigate } from "@remix-run/react";
 import { FC, ReactNode, useState } from "react";
@@ -52,9 +52,9 @@ const IncomeStatementMainComponent: FC<{ children?: ReactNode }> = (props) => {
               <IncomeStatementTableComponent data={table} />
             ) : (
               <Center>
-                <CircularProgress isIndeterminate color="green.300" />
+                <Spinner size="xl" />
               </Center>
-            )}{" "}
+            )}
           </TabPanel>
           <TabPanel>{props.children}</TabPanel>
         </TabPanels>

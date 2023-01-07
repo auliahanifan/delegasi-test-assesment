@@ -6,11 +6,8 @@ import {
   Tab,
   TabPanel,
   Box,
-  Text,
   Center,
-  Divider,
-  Badge,
-  CircularProgress,
+  Spinner,
 } from "@chakra-ui/react";
 import { useNavigate } from "@remix-run/react";
 import { FC, ReactNode, useState } from "react";
@@ -55,7 +52,7 @@ const BalanceSheetMainComponent: FC<{ children?: ReactNode }> = (props) => {
               <BalanceSheetTableComponent data={table} />
             ) : (
               <Center>
-                <CircularProgress isIndeterminate color="green.300" />
+                <Spinner size="xl" />
               </Center>
             )}
           </TabPanel>
