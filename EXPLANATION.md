@@ -15,8 +15,9 @@ Problem:
 
 Solusi:
 
-- Tabel: ini adalah source of truth.
-- Insights: pada page ini, user mendapatkan insight atau interpretasi dari tabel, dari insight tersebut diharapkan user dapat tahu hal hal yang bagus, cukup, dan kurang baik dari laporan keuangan.
+- Info Detail Section: Tabel Section. Ini adalah source of truth.
+- Info Penting Section: Insights Section. Pada page tersebut, user mendapatkan insight atau interpretasi dari tabel, dari insight tersebut diharapkan user dapat tahu hal-hal yang penting dari laporan keuangan. User dapat memfilter insight.
+- Tabel dan Insight section dirangkai dalam tab untuk mempersimpel tampilan.
 
 Challenge:
 
@@ -36,7 +37,7 @@ Challenge:
 
 ### Laporan Neraca: Insights
 
-![image balance-sheet-insights](./docs/img/balance-sheet-insights.png)
+![image balance-sheet-insights](./docs/img/balance-sheet-insights-with-filter-open.png)
 
 ### Laporan Laba Rugi: Tabel
 
@@ -44,4 +45,4 @@ Challenge:
 
 ### Laporan Laba Rugi: Insights
 
-![image income-statement-insights](./docs/img/income-statement-insights.png)
+![image income-statement-insights](./docs/img/income-statement-insights-with-filter-open.png)
