@@ -26,7 +26,7 @@ const BalanceSheetInsightsComponent: FC<{
   const onChangeStatus = (newVal: string) => {
     setFilterStatus(newVal);
 
-    const BASE_ROUTE: string = "/income-statement/insights";
+    const BASE_ROUTE: string = "/balance-sheet/insights";
 
     switch (newVal) {
       case "null":
