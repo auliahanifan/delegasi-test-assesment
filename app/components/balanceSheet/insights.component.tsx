@@ -1,6 +1,7 @@
 import { Box, Center, Select, Spinner, Text } from "@chakra-ui/react";
 import { useNavigate } from "@remix-run/react";
 import type { FC } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import type { InsightDto } from "~/dtos/insight.dto";
 import InsightCardComponent from "../common/insightCard/main.component";
@@ -22,6 +23,11 @@ const BalanceSheetInsightsComponent: FC<{
     { label: "Tampilkan Insight Hati-hati", value: "warning" },
     { label: "Tampilkan Insight Bahaya", value: "danger" },
   ]);
+
+  useEffect(() => {
+    setData([]);
+    setTimeout(() => setData(props.data), 50);
+  }, [props.data]);
 
   const onChangeStatus = (newVal: string) => {
     setFilterStatus(newVal);
