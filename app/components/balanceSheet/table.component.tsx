@@ -44,15 +44,13 @@ const BalanceSheetTableComponent: FC<{ data: TableDto }> = (props) => {
                               <Td
                                 style={{
                                   padding: "1px",
-                                  fontWeight: "bold",
-                                  color: "#868B8E",
+                                  fontWeight: 500,
                                 }}
                               >{`${firstLevelRow.label}`}</Td>
                               <Td
                                 style={{
                                   padding: "1px",
-                                  fontWeight: "bold",
-                                  color: "#868B8E",
+                                  fontWeight: 500,
                                 }}
                                 isNumeric
                               >
@@ -65,14 +63,11 @@ const BalanceSheetTableComponent: FC<{ data: TableDto }> = (props) => {
                           }
                           {firstLevelRow.details?.map((secondLevelRow) => {
                             return (
-                              <Tr style={{ padding: "2px", color: "#868B8E" }}>
+                              <Tr style={{ padding: "2px" }}>
                                 <Td
                                   style={{ padding: "1px" }}
                                 >{`${secondLevelRow.label}`}</Td>
-                                <Td
-                                  style={{ padding: "1px", color: "#868B8E" }}
-                                  isNumeric
-                                >
+                                <Td style={{ padding: "1px" }} isNumeric>
                                   {convertNumber(
                                     secondLevelRow.value,
                                     secondLevelRow.isCredit

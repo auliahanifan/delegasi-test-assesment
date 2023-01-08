@@ -15,7 +15,7 @@ import type { TableDto } from "~/dtos/table.dto";
 import { convertNumber } from "~/utils";
 
 const IncomeStatementTableComponent: FC<{ data: TableDto }> = (props) => {
-  const [data, _] = useState<TableDto>(props.data);
+  const [data, setData] = useState<TableDto>(props.data);
 
   return (
     <Box width="100%">
@@ -43,8 +43,7 @@ const IncomeStatementTableComponent: FC<{ data: TableDto }> = (props) => {
                       <Td
                         style={{
                           padding: "1px",
-                          fontWeight: "bold",
-                          color: "#868B8E",
+                          fontWeight: 500,
                           width: "100px",
                           maxWidth: "150px",
                           wordWrap: "break-word",
@@ -54,8 +53,7 @@ const IncomeStatementTableComponent: FC<{ data: TableDto }> = (props) => {
                       <Td
                         style={{
                           padding: "1px",
-                          fontWeight: "bold",
-                          color: "#868B8E",
+                          fontWeight: 500,
                           width: "100px",
                           maxWidth: "150px",
                           wordWrap: "break-word",
@@ -74,16 +72,12 @@ const IncomeStatementTableComponent: FC<{ data: TableDto }> = (props) => {
                       <Tr
                         style={{
                           padding: "2px",
-                          color: "#868B8E",
                         }}
                       >
                         <Td
                           style={{ padding: "1px", wordBreak: "break-word" }}
                         >{`${secondLevelRow.label}`}</Td>
-                        <Td
-                          style={{ padding: "1px", color: "#868B8E" }}
-                          isNumeric
-                        >
+                        <Td style={{ padding: "1px" }} isNumeric>
                           {convertNumber(
                             secondLevelRow.value,
                             secondLevelRow.isCredit
