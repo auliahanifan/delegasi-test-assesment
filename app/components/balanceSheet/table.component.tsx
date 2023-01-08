@@ -66,7 +66,7 @@ const BalanceSheetTableComponent: FC<{ data: TableDto }> = (props) => {
                               <Tr style={{ padding: "2px" }}>
                                 <Td
                                   style={{ padding: "1px" }}
-                                >{`${secondLevelRow.label}`}</Td>
+                                >{`∙ ${secondLevelRow.label}`}</Td>
                                 <Td style={{ padding: "1px" }} isNumeric>
                                   {convertNumber(
                                     secondLevelRow.value,

@@ -76,7 +76,7 @@ const IncomeStatementTableComponent: FC<{ data: TableDto }> = (props) => {
                       >
                         <Td
                           style={{ padding: "1px", wordBreak: "break-word" }}
-                        >{`${secondLevelRow.label}`}</Td>
+                        >{`∙ ${secondLevelRow.label}`}</Td>
                         <Td style={{ padding: "1px" }} isNumeric>
                           {convertNumber(
                             secondLevelRow.value,
