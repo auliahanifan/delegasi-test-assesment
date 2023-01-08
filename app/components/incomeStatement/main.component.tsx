@@ -16,7 +16,7 @@ import type { TableDto } from "~/dtos/table.dto";
 import IncomeStatementTableComponent from "./table.component";
 
 type IncomeStatementMainComponentProps = {
-  table: TableDto;
+  table?: TableDto;
   indexTab: number;
   children?: ReactNode;
 };
@@ -24,7 +24,7 @@ type IncomeStatementMainComponentProps = {
 const IncomeStatementMainComponent: FC<IncomeStatementMainComponentProps> = (
   props
 ) => {
-  const [table, setTable] = useState<TableDto>(props.table);
+  const [table, setTable] = useState<TableDto | undefined>(props.table);
   const [indexTab, setIndexTab] = useState<number>(props?.indexTab);
   let navigate = useNavigate();
 

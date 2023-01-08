@@ -17,35 +17,44 @@ export async function getIncomeStatementData(): Promise<TableDto> {
     });
 }
 
-export async function getIncomeStatementInsights(): Promise<InsightDto[]> {
+export async function getIncomeStatementInsights(
+  filterStatus: string | null
+): Promise<InsightDto[]> {
   const result: InsightDto[] = [];
   // Hard Code
   // To Do: Make logic for get insights / interpretation from real balance sheet
-  result.push({
-    status: "ok",
-    message: "Perusahaan kamu dalam posisi untung.",
-    data: {
-      label: "Keuntungan",
-      value: "Rp 150.0000",
-    },
-  });
-  result.push({
-    status: "warning",
-    message: "HPP saat ini 54%, yuk turunkan",
-    data: {
-      label: "Persentase HPP Aman",
-      value: "55%",
-    },
-  });
+  if (filterStatus === null || filterStatus === "ok") {
+    result.push({
+      status: "ok",
+      message: "Perusahaan kamu dalam posisi untung.",
+      data: {
+        label: "Keuntungan",
+        value: "Rp 150.0000",
+      },
+    });
+  }
 
-  result.push({
-    status: "danger",
-    message: "Diskon kamu terlalu besar!",
-    data: {
-      label: "Pesentase Diskon ",
-      value: "40%",
-    },
-  });
+  if (filterStatus == null || filterStatus === "warning") {
+    result.push({
+      status: "warning",
+      message: "HPP saat ini 54%, yuk turunkan",
+      data: {
+        label: "Persentase HPP Aman",
+        value: "55%",
+      },
+    });
+  }
+
+  if (filterStatus == null || filterStatus === "danger") {
+    result.push({
+      status: "danger",
+      message: "Diskon kamu terlalu besar!",
+      data: {
+        label: "Pesentase Diskon ",
+        value: "40%",
+      },
+    });
+  }
 
   return result;
 }
