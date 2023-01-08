@@ -23,12 +23,12 @@ const IncomeStatementInsightsComponent: FC<{
   ]);
 
   useEffect(() => {
-    setData([]);
-    setTimeout(() => setData(props.data), 50);
+    setData(props.data);
   }, [props.data]);
 
   const onChangeStatus = (newVal: string) => {
     setFilterStatus(newVal);
+    setData([]);
 
     const BASE_ROUTE: string = "/income-statement/insights";
 
@@ -63,6 +63,11 @@ const IncomeStatementInsightsComponent: FC<{
           <option value={data.value}>{data.label}</option>
         ))}
       </Select>
+      {data.length === 0 ? (
+        <Center>
+          <Spinner size="xl" />
+        </Center>
+      ) : null}
       {data.map((insight) => (
         <InsightCardComponent data={insight} />
       ))}
