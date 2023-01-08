@@ -3,7 +3,7 @@ import { useLoaderData } from "@remix-run/react";
 import BalanceSheetInsightsComponent from "~/components/balanceSheet/insights.component";
 import { getBalanceSheetInsights } from "~/services/balanceService.server";
 
-async function loader({ request }: LoaderArgs) {
+export async function loader({ request }: LoaderArgs) {
   const url = new URL(request.url);
   const filterStatus = url.searchParams.get("status");
   const insight = await getBalanceSheetInsights(filterStatus);
