@@ -27,6 +27,7 @@ export async function getBalanceSheetInsights(
     result.push({
       status: "ok",
       message: "Perusahaan kamu mampu menutupi kewajiban lancar dengan aman.",
+      messageHtml: "",
       data: {
         label: "Rasio Aman",
         value: "1.5",
@@ -39,6 +40,7 @@ export async function getBalanceSheetInsights(
       status: "warning",
       message:
         "Perusahaan butuh tambahan kas untuk menutupi kewajiban jangka pendek.",
+      messageHtml: "",
       data: {
         label: "Rasio Kas",
         value: "0.5",
@@ -50,6 +52,7 @@ export async function getBalanceSheetInsights(
     result.push({
       status: "danger",
       message: "Perusahaan terlalu banyak utang berbunga.",
+      messageHtml: "",
       data: {
         label: "Debt to asset ratio ",
         value: "1.5",
@@ -57,5 +60,8 @@ export async function getBalanceSheetInsights(
     });
   }
 
-  return result;
+  return result.map((data) => {
+    data.messageHtml = data.message;
+    return data;
+  });
 }

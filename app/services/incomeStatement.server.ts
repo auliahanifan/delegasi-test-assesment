@@ -27,6 +27,7 @@ export async function getIncomeStatementInsights(
     result.push({
       status: "ok",
       message: "Perusahaan kamu dalam posisi untung.",
+      messageHtml: "",
       data: {
         label: "Keuntungan",
         value: "Rp 150.0000",
@@ -38,6 +39,7 @@ export async function getIncomeStatementInsights(
     result.push({
       status: "warning",
       message: "HPP saat ini 54%, yuk turunkan",
+      messageHtml: "",
       data: {
         label: "Persentase HPP Aman",
         value: "55%",
@@ -49,6 +51,7 @@ export async function getIncomeStatementInsights(
     result.push({
       status: "danger",
       message: "Diskon kamu terlalu besar!",
+      messageHtml: "",
       data: {
         label: "Pesentase Diskon ",
         value: "40%",
@@ -56,5 +59,8 @@ export async function getIncomeStatementInsights(
     });
   }
 
-  return result;
+  return result.map((data) => {
+    data.messageHtml = data.message;
+    return data;
+  });
 }

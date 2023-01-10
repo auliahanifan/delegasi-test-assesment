@@ -1,4 +1,14 @@
-import { Box, Center, Select, Spinner, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Select,
+  Spinner,
+  Text,
+} from "@chakra-ui/react";
 import { useNavigate } from "@remix-run/react";
 import type { FC } from "react";
 import { useEffect } from "react";
@@ -15,7 +25,9 @@ const BalanceSheetInsightsComponent: FC<{
   const [data, setData] = useState<InsightDto[] | undefined | null>(
     props?.data
   );
+
   const [filterStatus, setFilterStatus] = useState(props.filterStatus);
+  const [keyword, setKeyword] = useState<string>("");
 
   const [statuses, setStatuses] = useState<{ label: string; value: string }[]>([
     { label: "Tampilkan Semua Insight", value: "null" },
@@ -27,6 +39,46 @@ const BalanceSheetInsightsComponent: FC<{
   useEffect(() => {
     setData(props.data);
   }, [props.data]);
+
+  useEffect(() => {
+    const filteredData = props.data.filter((insight) =>
+      insight.message
+        .toLocaleLowerCase()
+        .includes(keyword.toLocaleLowerCase() ?? "")
+    );
+    setData(
+      filteredData.length === 0
+        ? null
+        : filteredData.map((data) => {
+            const messageCopy = `${data.message}`
+              .replace("</strong>", "")
+              .replace("<strong>", "");
+            const loweredKeyWord = keyword.toLowerCase();
+
+            if (keyword !== "") {
+              const init = messageCopy.slice(
+                0,
+                messageCopy.toLowerCase().indexOf(loweredKeyWord)
+              );
+              const mid = messageCopy.slice(
+                messageCopy.toLowerCase().indexOf(loweredKeyWord),
+                messageCopy.toLowerCase().indexOf(loweredKeyWord) +
+                  keyword.length
+              );
+              const end = messageCopy.slice(
+                messageCopy.toLocaleLowerCase().indexOf(loweredKeyWord) +
+                  keyword.length
+              );
+
+              data.messageHtml = `${init}<strong style="background-color:#b1f2ff">${mid}</strong>${end}`;
+            } else {
+              data.messageHtml = messageCopy;
+            }
+
+            return data;
+          })
+    );
+  }, [keyword]);
 
   const onChangeStatus = (newVal: string) => {
     setFilterStatus(newVal);
@@ -44,7 +96,12 @@ const BalanceSheetInsightsComponent: FC<{
     }
   };
 
-  if (data == undefined) {
+  const onChangeKeyword = (newVal: string) => {
+    setKeyword(newVal);
+    setData([]);
+  };
+
+  if (data === undefined) {
     return (
       <Box>
         <Center>
@@ -52,15 +109,47 @@ const BalanceSheetInsightsComponent: FC<{
         </Center>
       </Box>
     );
-  } else if (data == null) {
+  } else if (data === null) {
     return (
       <Box>
-        <Text> Can't fetch data </Text>
+        <InputGroup size="md" margin="0px 5px 5px 5px">
+          <Input
+            pr="4.5rem"
+            type="text"
+            placeholder="Cari Kata Kunci"
+            onChange={(event) => {
+              onChangeKeyword(event.target.value);
+            }}
+          />
+          <InputRightElement width="4.5rem">
+            <Button h="1.75rem" size="sm" disabled>
+              Cari
+            </Button>
+          </InputRightElement>
+        </InputGroup>
+        <Center padding="40px">
+          <Text> Insight Tidak Ditemukan </Text>
+        </Center>
       </Box>
     );
   }
   return (
     <Box width="100%">
+      <InputGroup size="md" margin="0px 5px 5px 5px">
+        <Input
+          pr="4.5rem"
+          type="text"
+          placeholder="Cari Kata Kunci"
+          onChange={(event) => {
+            onChangeKeyword(event.target.value);
+          }}
+        />
+        <InputRightElement width="4.5rem">
+          <Button h="1.75rem" size="sm" disabled>
+            Cari
+          </Button>
+        </InputRightElement>
+      </InputGroup>
       <Select
         margin="0px 5px 10px 5px"
         value={filterStatus}

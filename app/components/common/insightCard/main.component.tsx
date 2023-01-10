@@ -20,11 +20,11 @@ const InsightCardComponent: FC<{ data: InsightDto }> = (props) => {
             <Badge colorScheme="red">BAHAYA</Badge>
           )}
 
-          <Text>{data.message}</Text>
+          <Text dangerouslySetInnerHTML={{ __html: data.messageHtml }}></Text>
           {data.data != undefined ? (
             <Box>
               <Divider orientation="horizontal" margin="5px 0px" />
-              <Text>{data.data.label} </Text>
+              <Text>{data.data.label}</Text>
               <Heading as="h3" size="lg">
                 {data.data.value}
               </Heading>
